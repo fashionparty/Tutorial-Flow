@@ -72,4 +72,24 @@ val result = flow.fold(initial = 10) { accumulator, value ->
                   accumulator + value
                 }
 ```
-            
+      
+## Flattening Flow Operators
+
+```
+// zewnętrzny flow przekazuje emisję do wewnętrznego, następnie wynik może zostać zebrany
+val result = flow.flatMapContact { value ->
+                  flow {
+                    emit(function(value))
+                  }.collect { nextFunction(it)
+                  
+                  
+// flatMapLatest - wewnętrzny flow pobiera tylko najnowsze emisje
+// flatMapMerge - tworzy iloczyn pomiędzy flow'ami - każda emisja z zewnętrznego flow zostanie przetworzona przez każdą emisję z wewnętrznego
+```
+
+## Forwarding Flow Operators
+
+`Buffer()` - umieszczony przed `collect` sprawi, że każda emisja zostanie obsłużona równolegle, tj. odpalona w osobnej korutynie.
+
+`Conflate() - kiedy najstarsza emisja zostanie wykonana to zostanie zebrana jeszcze tylko aktualnie wykonywana emisja, pozostałe zostaną przerwane. Tak jak w przypadku `Buffer` przetwarza emisje równlegle.
+                 
