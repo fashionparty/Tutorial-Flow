@@ -91,5 +91,5 @@ val result = flow.flatMapContact { value ->
 
 `Buffer()` - umieszczony przed `collect` sprawi, że każda emisja zostanie obsłużona równolegle, tj. odpalona w osobnej korutynie.
 
-`Conflate() - kiedy najstarsza emisja zostanie wykonana to zostanie zebrana jeszcze tylko aktualnie wykonywana emisja, pozostałe zostaną przerwane. Tak jak w przypadku `Buffer` przetwarza emisje równlegle.
+`Conflate()` - kiedy najstarsza emisja zostanie wykonana to zostanie zebrana jeszcze tylko aktualnie wykonywana emisja, pozostałe zostaną przerwane. Tak jak w przypadku `Buffer` przetwarza emisje równlegle.
                  
